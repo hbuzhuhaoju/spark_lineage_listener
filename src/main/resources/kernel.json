@@ -1,0 +1,19 @@
+{
+    "argv": [
+     "python3",
+     "-m",
+     "pyspark_kernel",
+     "-f",
+     "{connection_file}"
+    ],
+    "display_name": "pyspark_listener",
+    "language": "python",
+    "env": {
+         "PYSPARK_PYTHON": "/usr/bin/python3",
+         "SPARK_HOME": "/usr/lib/spark-current",
+         "PYTHONPATH": "/usr/lib/spark-current/python/:/usr/lib/spark-current/python/lib/py4j-0.10.9-src.zip",
+         "PYTHONSTARTUP": "/usr/lib/spark-current/python/pyspark/shell.py",
+         "HADOOP_CONF_DIR": "/etc/ecm/hadoop-conf",
+         "PYSPARK_SUBMIT_ARGS": "--master yarn --deploy-mode client --conf spark.logConf=True --conf spark.driver.extraJavaOptions=-Dlog4j.configuration=file:/etc/ecm/spark-conf-3.1.2-hadoop3.2-1.0.0/log4j.properties --conf spark.executor.extraJavaOptions=-Dlog4j.configuration=file:/etc/ecm/spark-conf-3.1.2-hadoop3.2-1.0.0/log4j.properties --conf spark.sql.queryExecutionListeners=com.sparklistener.CustomQueryExecutionListener --conf spark.jars=hdfs://emr-cluster/extra_jars/first-1.0.0-release.jar --conf spark.sql.catalogImplementation=hive  --driver-memory 4g --num-executors 4 --executor-memory 4g --executor-cores 4 --queue model pyspark-shell"
+     }
+   }
